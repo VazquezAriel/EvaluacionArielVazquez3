@@ -32,10 +32,13 @@ public class PublicacionController {
     }
 
     @GetMapping("/search")
-    public String searchPublicacion(@RequestParam(required = false) Integer id, @RequestParam(required = false) String title) {
-        if (id != null) return service.searchById(id);
-        if (title != null) return service.searchByTitle(title);
-        return "Debes proporcionar al menos un ID o un título.";
+    public String searchPublicacion(@RequestParam(required = false) String id, @RequestParam(required = false) String title) {
+
+        if (id != null && id.matches("^\\d+$")) return service.searchById(Integer.parseInt(id));
+
+        if (title != null && title.matches("^[a-zA-Z0-9]*$")) return service.searchByTitle(title);
+        
+        return "Debes proporcionar al menos un ID o un título validos.";
     }
     
 }

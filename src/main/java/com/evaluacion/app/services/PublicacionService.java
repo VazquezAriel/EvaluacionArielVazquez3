@@ -24,14 +24,14 @@ public class PublicacionService {
 
     public String searchById(Integer id) {
         return repository.findById(id)
-                .map(publicacion -> "Publicación encontrada con ID: " + id)
-                .orElse("No se encontró una publicación con ID: " + id);
+            .map(publicacion -> "Publicación encontrada con ID: " + id)
+            .orElse("No se encontró ninguna publicación con ID: " + id);
     }
 
     public String searchByTitle(String title) {
         return !repository.findByTitle(title).isEmpty() 
             ? "Publicación encontrada con titulo: " + title
-            : "No se encontró una publicación con titulo: " + title ;
+            : "No se encontró ninguna publicación con titulo: " + title ;
     }
 
     public String getAndSaveData() {
